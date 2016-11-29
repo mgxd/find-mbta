@@ -115,8 +115,6 @@ class GCode():
 
 
 def main():
-	# only stop I'm interested in
-	stop_url = 'http://realtime.mbta.com/developer/api/v2/predictionsbystop?api_key=wX9NwuHnZU2ToO7GmGR9uw&stop=1046&format=json'
 	# create bus stop object
 	mbta = Stop('1046', mode='Bus')
 	stop = mbta.get_stop()
