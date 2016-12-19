@@ -38,8 +38,10 @@ class Stop():
 	def get_url(self):
 		""" Get info from stopID
 		Returns api url """
-		format = 'json'
-		base = 'http://realtime.mbta.com/developer/api/v2/predictionsbystop?api_key=wX9NwuHnZU2ToO7GmGR9uw'
+		format = 'json' # provide others as well in future
+		# using public api key atm
+		base = ('http://realtime.mbta.com/developer/api/v2/'
+				'predictionsbystop?api_key=wX9NwuHnZU2ToO7GmGR9uw')
 		return '{0}&stop={1}&format={2}'.format(base, self.stopid, format)
 
 	def get_stop(self):
@@ -125,9 +127,11 @@ def main():
 	arrival_times = {}
 	buses = mbta.locate_buses()
 	for i, bus in enumerate(buses):
-		# seconds from current location to stop minus last ping, walk to stop, put away laptop and lock doors
-		prep = 60 # seconds
-		dist = GCode(bus[1]).get_travel_time(stop, 'driving') - bus[2] - walk - prep
+		# seconds from current location to stop minus last ping, 
+		# walk to stop, put away laptop and lock doors
+		prep = 60 # preparation before leaving
+		dist = (GCode(bus[1]).get_travel_time(stop, 'driving')
+				- bus[2] - walk - prep)
 		if dist <= 0:
 			continue
 		if bus[0] not in arrival_times:
