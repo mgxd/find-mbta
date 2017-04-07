@@ -44,6 +44,7 @@ class Stop():
 				'predictionsbystop?api_key=wX9NwuHnZU2ToO7GmGR9uw')
 		return '{0}&stop={1}&format={2}'.format(base, self.stopid, format)
 
+	@property
 	def get_stop(self):
 		""" Print name of stop 
 		Returns stop name """
