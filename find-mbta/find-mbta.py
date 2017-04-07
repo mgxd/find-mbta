@@ -133,6 +133,7 @@ def main():
 		prep = 60 # preparation before leaving
 		dist = (GCode(bus[1]).get_travel_time(stop, 'driving')
 				- bus[2] - walk - prep)
+		# if cannot make it to stop in time, don't show
 		if dist <= 0:
 			continue
 		if bus[0] not in arrival_times:
